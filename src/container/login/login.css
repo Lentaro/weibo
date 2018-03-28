@@ -1,0 +1,19 @@
+
+.login-form-forgot{
+  float: right;
+}
+
+.login-form-button{
+  display: block;
+  width: 100%;
+}
+
+#to-register-button{
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.sgin-up-card{
+  width: 400px;
+}

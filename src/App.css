@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#app-box{
+  height: 100%;
+}
+
+.sgin-up-bg{
+  display:flex;/*Flex布局*/
+  display: -webkit-flex; /* Safari */
+  align-items:center;/*指定垂直居中*/
+  height: 100%;
+  justify-content:center;/*水平居中*/
+  background-color: #909090;
+}
+
+.error-msg{
+  color: red;
+  padding: 0;
+  margin: 0;
+}
