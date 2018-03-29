@@ -16,6 +16,7 @@ const models = {
         'nickname':{'type':String,'require':true},
         'avatar':{'type':String},
         'desc':{'type':String},
+        'sex':{'type':String},
         'follow':{'type':String},
         'birthday':{'type':Date}
     },

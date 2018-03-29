@@ -21,13 +21,14 @@ class AuthRoute extends Component{
       const res = await axios.get('/user/info')
       if(res.status===200){
         if(res.data.code===0){
-          console.log(res.data)
+          // console.log(res.data)
           this.props.loadData(res.data.doc)
         }else{
           this.props.history.push('/login')
         }
       }
     })()
+    // console.log(this.props)
   }
   render(){
     // console.log(this.props.history)

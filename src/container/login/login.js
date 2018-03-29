@@ -3,15 +3,18 @@ import { Card, Form, Input, Icon, Checkbox, Button, Alert } from 'antd'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import { login } from 'reduxs/user.redux'
+import { login, cleanMsg } from 'reduxs/user.redux'
 import './login.css'
 
 @connect(
   state=>state.user,
-  {login}
+  {login,cleanMsg}
 )
 
 class Login extends Component{
+  componentWillUnmount(){
+    this.props.cleanMsg()
+  }
   handleSubmit=(e)=>{
     //取消默认动作
     e.preventDefault()

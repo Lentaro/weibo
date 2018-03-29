@@ -76,7 +76,7 @@ class Register extends Component{
           offset: 5,
         },
       },
-      };
+    }
     // console.log(this.props.form)
     const redirect = this.props.redirectTo
     const msg = this.props.msg

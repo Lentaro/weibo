@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import Logo from 'component/logo/logo'
 import UserInfo from 'component/userInfo/userInfo'
 
-const {Header, Content, Footer, Sider} = Layout
+const { Sider } = Layout
 const MenuItem = Menu.Item
 
 function Home (){

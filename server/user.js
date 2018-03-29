@@ -60,9 +60,26 @@ Router.get('/info',function(req,res){
     }
     User.findOne({_id:userid},_filter,function(err,doc){
         if(err){
-            return res.json({cdoe:1,msg:'后端出错了'})
+            return res.json({code:1,msg:'后端出错了'})
         }
         return res.json({code:0,doc})
+    })
+})
+Router.post('/update',function(req,res){
+    //从cookie获取id
+    const userid = req.cookies.userid
+    if(!userid){
+        return res.json({code:1})
+    }
+    const body = req.body
+    User.findByIdAndUpdate(userid,body,function(err,doc){
+        // console.log(body)
+        // console.log(doc)
+        const data = Object.assign({},{
+            username:doc.username
+        },body)
+        // console.log(data)
+        return res.json({code:0,data})
     })
 })
 //MD5加盐增强密码

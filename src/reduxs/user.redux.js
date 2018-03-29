@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 
 import { getRedirectPath } from '@/util'
 
@@ -11,9 +12,10 @@ const initState={
   redirectTo:'',
   username:'',
   nickname:'',
-  _id:'',
   avatar:'',
-  desc:''
+  desc:'',
+  sex:'',
+  birthday:moment('1980/1/1','YYYY/MM/DD')
 }
 
 export function user(state=initState,action){
@@ -30,12 +32,34 @@ export function user(state=initState,action){
 }
 
 function authSuccess(data){
-  console.log(data)
+  // console.log(data)
   return {type:AUTH_SUCCESS,payload:data}
+}
+
+export function cleanMsg (){
+  return (dispatch)=> {
+    dispatch(errorMsg(''))
+  }
 }
 
 function errorMsg(msg){
   return {msg,type:ERROR_MSG}
+}
+
+export function update (values){
+  return async(dispatch)=>{
+    const res = await axios.post(
+      'user/update',
+      {...values}
+    )
+    if(res.status===200&&res.data.code===0){
+      const data = res.data.data
+      // console.log(data)
+      dispatch(
+        authSuccess(data)
+      )
+    }
+  }
 }
 
 //将获取到的用户信息放入redux
@@ -53,7 +77,7 @@ export function login ({username,password}){
     if(res.status===200&&res.data.code===0){
       const data = res.data.data
       dispatch(
-        authSuccess({username,nickname:data.nickname,id:data._id})
+        authSuccess(res.data.data)
       )
     }else {
       dispatch(errorMsg(res.data.msg))
@@ -70,7 +94,7 @@ export function register({username,password,nickname}){
     )
     if(res.status===200&&res.data.code===0){
       dispatch(
-        authSuccess({username,nickname:res.data.nickname,id:res.data._id})
+        authSuccess(res.data.data)
       )
     }else {
       dispatch(errorMsg(res.data.msg))
